@@ -1,6 +1,11 @@
 package com.training.pos.bean;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class StoreBean {
+	@Id
 	private String StoreID;
 	private String name;
 	private String street;

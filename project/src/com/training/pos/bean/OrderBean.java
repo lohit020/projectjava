@@ -2,13 +2,25 @@ package com.training.pos.bean;
 
 import java.util.Date;
 
-public class OrderBean {
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 
+@Entity
+public class OrderBean {
+	@Id
 	private String orderID;
-	private String userID;
+	@OneToOne
+	@JoinColumn(name = "userId")
+	private CredentialsBean credentialsBean;
 	private Date orderDate;
-	private String storeID;
-	private int cartID;
+	@OneToOne
+	@JoinColumn(name="storeId")
+	private StoreBean storeBean;
+	@OneToOne
+	@JoinColumn(name = "cartId")
+	private CartBean cartBean;
 	private double totalPrice;
 	private String orderStatus;
 	private String street;
@@ -18,36 +30,38 @@ public class OrderBean {
 	private String mobileNo;
 	
 	
+	public CredentialsBean getCredentialsBean() {
+		return credentialsBean;
+	}
+	public void setCredentialsBean(CredentialsBean credentialsBean) {
+		this.credentialsBean = credentialsBean;
+	}
+	public StoreBean getStoreBean() {
+		return storeBean;
+	}
+	public void setStoreBean(StoreBean storeBean) {
+		this.storeBean = storeBean;
+	}
+	public CartBean getCartBean() {
+		return cartBean;
+	}
+	public void setCartBean(CartBean cartBean) {
+		this.cartBean = cartBean;
+	}
 	public String getOrderID() {
 		return orderID;
 	}
 	public void setOrderID(String orderID) {
 		this.orderID = orderID;
 	}
-	public String getUserID() {
-		return userID;
-	}
-	public void setUserID(String userID) {
-		this.userID = userID;
-	}
+
 	public Date getOrderDate() {
 		return orderDate;
 	}
 	public void setOrderDate(Date orderDate) {
 		this.orderDate = orderDate;
 	}
-	public String getStoreID() {
-		return storeID;
-	}
-	public void setStoreID(String storeID) {
-		this.storeID = storeID;
-	}
-	public int getCartID() {
-		return cartID;
-	}
-	public void setCartID(int cartID) {
-		this.cartID = cartID;
-	}
+	
 	public double getTotalPrice() {
 		return totalPrice;
 	}
@@ -93,10 +107,10 @@ public class OrderBean {
 	
 	@Override
 	public String toString() {
-		return "OrderBean [orderID=" + orderID + ", userID=" + userID + ", orderDate=" + orderDate + ", storeID="
-				+ storeID + ", cartID=" + cartID + ", totalPrice=" + totalPrice + ", orderStatus=" + orderStatus
-				+ ", street=" + street + ", city=" + city + ", state=" + state + ", pincode=" + pincode + ", mobileNo="
-				+ mobileNo + "]";
+		return "OrderBean [orderID=" + orderID + ", credentialsBean=" + credentialsBean + ", orderDate=" + orderDate
+				+ ", storeBean=" + storeBean + ", cartBean=" + cartBean + ", totalPrice=" + totalPrice
+				+ ", orderStatus=" + orderStatus + ", street=" + street + ", city=" + city + ", state=" + state
+				+ ", pincode=" + pincode + ", mobileNo=" + mobileNo + "]";
 	}
 		
 }

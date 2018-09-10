@@ -1,9 +1,21 @@
 package com.training.pos.bean;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class ProfileBean {
-	private String userId;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
+
+@Entity
+public class ProfileBean implements Serializable {
+	private static final long serialVersionUID = 1L;
+	@Id 
+	@OneToOne
+	@JoinColumn(name="userID")
+	private CredentialsBean credentialsBean;
 	private String firstName;
 	private String lastName;
 	private Date dateOfBirth;
@@ -16,11 +28,13 @@ public class ProfileBean {
 	private String mobileNo;
 	private String emailID;
 	private String password;
-	public String getUserId() {
-		return userId;
+	
+	
+	public CredentialsBean getCredentialsBean() {
+		return credentialsBean;
 	}
-	public void setUserId(String userId) {
-		this.userId = userId;
+	public void setCredentialsBean(CredentialsBean credentialsBean) {
+		this.credentialsBean = credentialsBean;
 	}
 	public String getFirstName() {
 		return firstName;
@@ -96,7 +110,7 @@ public class ProfileBean {
 	}
 	@Override
 	public String toString() {
-		return "ProfileBean [userId=" + userId + ", firstName=" + firstName + ", lastName=" + lastName
+		return "ProfileBean [credentialsBean=" + credentialsBean + ", firstName=" + firstName + ", lastName=" + lastName
 				+ ", dateOfBirth=" + dateOfBirth + ", gender=" + gender + ", street=" + street + ", location="
 				+ location + ", city=" + city + ", state=" + state + ", pinCode=" + pinCode + ", mobileNo=" + mobileNo
 				+ ", emailID=" + emailID + ", password=" + password + "]";

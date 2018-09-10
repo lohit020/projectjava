@@ -1,7 +1,11 @@
 package com.training.pos.bean;
 
-public class CredentialsBean {
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
+@Entity
+public class CredentialsBean {
+	@Id
 	private String userId;
 	private String passWord;
 	private String usertype;

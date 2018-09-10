@@ -1,6 +1,11 @@
 package com.training.pos.bean;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class FoodBean {
+	@Id
 	private String foodId;
 	private String Name;
 	private String type;

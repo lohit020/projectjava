@@ -1,14 +1,27 @@
 package com.training.pos.bean;
 
+
 import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+
+
+@Entity
 public class CartBean {
 	
 	
-
+	@Id
 	private int cartID;
-	private String userID;
-	private String foodID;
+	
+	@OneToOne
+	@JoinColumn(name="userId")
+	private CredentialsBean credentialsBean;
+	@OneToOne
+	@JoinColumn(name="foodId")
+	private FoodBean foodBean;
 	private String type;
 	private int quantity;
 	private double cost;
@@ -19,17 +32,18 @@ public class CartBean {
 	public void setCartID(int cartID) {
 		this.cartID = cartID;
 	}
-	public String getUserID() {
-		return userID;
+	
+	public CredentialsBean getCredentialsBean() {
+		return credentialsBean;
 	}
-	public void setUserID(String userID) {
-		this.userID = userID;
+	public void setCredentialsBean(CredentialsBean credentialsBean) {
+		this.credentialsBean = credentialsBean;
 	}
-	public String getFoodID() {
-		return foodID;
+	public FoodBean getFoodBean() {
+		return foodBean;
 	}
-	public void setFoodID(String foodID) {
-		this.foodID = foodID;
+	public void setFoodBean(FoodBean foodBean) {
+		this.foodBean = foodBean;
 	}
 	public String getType() {
 		return type;
@@ -57,8 +71,8 @@ public class CartBean {
 	}
 	@Override
 	public String toString() {
-		return "CartBean [cartID=" + cartID + ", userID=" + userID + ", foodID=" + foodID + ", type=" + type
-				+ ", quantity=" + quantity + ", cost=" + cost + ", orderDate=" + orderDate + "]";
+		return "CartBean [cartID=" + cartID + ", credentialsBean=" + credentialsBean + ", foodBean=" + foodBean
+				+ ", type=" + type + ", quantity=" + quantity + ", cost=" + cost + ", orderDate=" + orderDate + "]";
 	}
 	
 	
