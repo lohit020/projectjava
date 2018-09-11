@@ -6,18 +6,20 @@ import javax.persistence.Id;
 @Entity
 public class StoreBean {
 	@Id
-	private String StoreID;
+	private String storeId;
 	private String name;
 	private String street;
 	private String mobileNo;
 	private String city;
 	private String state;
 	private String pincode;
-	public String getStoreID() {
-		return StoreID;
+	
+	
+	public String getStoreId() {
+		return storeId;
 	}
-	public void setStoreID(String storeID) {
-		StoreID = storeID;
+	public void setStoreId(String storeId) {
+		this.storeId = storeId;
 	}
 	public String getName() {
 		return name;
@@ -57,7 +59,7 @@ public class StoreBean {
 	}
 	@Override
 	public String toString() {
-		return "StoreBean [StoreID=" + StoreID + ", name=" + name + ", street=" + street + ", mobileNo=" + mobileNo
+		return "StoreBean [StoreID=" + storeId + ", name=" + name + ", street=" + street + ", mobileNo=" + mobileNo
 				+ ", city=" + city + ", state=" + state + ", pincode=" + pincode + "]";
 	}
 	

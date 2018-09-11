@@ -1,13 +1,19 @@
 package com.training.pos.dao;
 
 import java.util.ArrayList;
+import java.util.List;
 
+import javax.persistence.TypedQuery;
+
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.training.pos.bean.CredentialsBean;
+import com.training.pos.bean.PosException;
 import com.training.pos.bean.ProfileBean;
+import com.training.pos.bean.StoreBean;
 
 @Repository
 public class AdminDaoImp implements AdminDao {
@@ -44,4 +50,31 @@ public class AdminDaoImp implements AdminDao {
 		return null;
 	}
 
-}
+	@Override
+	public List<StoreBean> getAllStores() throws PosException {
+		try {
+			Session session = sf.openSession();
+			TypedQuery query = session.createQuery("from StoreBean");
+			List<StoreBean> stores = query.getResultList();
+			return stores;			
+		}
+		catch (Exception e) {
+			throw new PosException(e.getMessage());
+		}
+	}
+
+	@Override
+	public List<StoreBean> addStore(StoreBean str) throws PosException {
+		try{
+			Session session = sf.openSession();
+			session.beginTransaction();
+			session.save(str);
+			session.getTransaction().commit();
+			return getAllStores();
+		}catch (Exception e) {
+			throw new PosException(e.getMessage());
+		}
+	}
+	}
+
+
