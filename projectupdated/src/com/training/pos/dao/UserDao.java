@@ -7,7 +7,7 @@ import com.training.pos.bean.ProfileBean;
 
 public interface UserDao {
 	public String createUser(ProfileBean profileBean);
-	public int deleteUser(ArrayList<String> array);
+	public String deleteUser(String userId);
 	public boolean updateUser(ProfileBean profileBean);
 	public CredentialsBean findByID(String userId);
 	public ArrayList<ProfileBean> findAll();	
